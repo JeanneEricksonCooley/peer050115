@@ -43,6 +43,8 @@ function search(query) {
             $(".profileLocation").text(result.location);
             if (result.hireable == true) {
                 $(".hireable").text(result.name + " is availble for hire!");
+            } else {
+                $(".hireable").empty();
             }
         },
         error: function(xhr, status) {
