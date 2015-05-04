@@ -1,10 +1,11 @@
 var oAuth = "?client_id=f8a4b95805c9804c9eb7&client_secret=4b1bff35a5b8b802fe4bb4e1204afd2f56fc8d8d";
-var user = "mc-funk";
-
-function search(query) {
-    //do a search function here
-}
-
+//var user = "mc-funk";
+/*
+ names: name
+ link: html_url
+ profile images: avatar_url,
+ public information: location, email
+ */
 $(document).ready(function() {
         $(".searchBtn").on('click', function(){
             getSearch($("#searchField").val());
@@ -33,6 +34,16 @@ function search(query) {
         },
         success: function(result) {
             console.log(result);
+            $(".searchData").show();
+            $(".profilePic").attr("src", result.avatar_url);
+            $(".profileName").text(result.name);
+            $(".profileLink").attr("href", result.html_url);
+            $(".profileLink").text(result.login);
+            $(".profileEmail").text(result.email);
+            $(".profileLocation").text(result.location);
+            if (result.hireable == true) {
+                $(".hireable").text(result.name + " is availble for hire!");
+            }
         },
         error: function(xhr, status) {
             console.log("There was an error: " + status);
